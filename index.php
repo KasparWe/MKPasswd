@@ -54,15 +54,16 @@
 <?php include "includes/functions/actions.php" ?> <!-- includes actions -->
 <?php
 
-$service = $_POST['ServiceName'];
-$username = $_POST['Username'];
-$password = $_POST['Password'];
-$Link = $_POST['LinkService'];
-
 
 
 if(isset($_POST['submit']))
 {
+    $service = $_POST['ServiceName'];
+    $username = $_POST['Username'];
+    $password = $_POST['Password'];
+    $Link = $_POST['LinkService'];
+
+
     addPaswd($service, $username, $password, $Link);
 }
 ?>
