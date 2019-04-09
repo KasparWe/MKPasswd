@@ -2,9 +2,9 @@
 
 <?php
 session_start();
-var_dump($_SESSION);
 if(!isset($_SESSION['username'])) {
-    die('Bitte zuerst <a href="login.php">einloggen</a>');
+    die('echo "<meta http-equiv=\'refresh\' content=\'0; URL=/login.php\'>";
+');
 }
 
 //Abfrage der Nutzer ID vom Login

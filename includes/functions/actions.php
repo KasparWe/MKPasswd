@@ -84,27 +84,26 @@ function listPasswd()
             <td><a class="copy" data-clipboard-text="<?php echo $row['user_name']; ?>"><?php echo $row['user_name']; ?></a></td>
                 <td><a class="copy" data-clipboard-text="<?php echo $row['password']; ?>"><?php echo $row['password']; ?></a></td>
             <td><?php echo $row['url']; ?></td>
-            <td><a><strong>delete</strong></a> - <a><strong>update</strong></a></td>
+            <td><a href="/delete.php?name=<?php echo $row['service_name'] ?>"><strong>delete</strong></a> - <a><strong>update</strong></a></td>
         </tr>
     <?php }
 }
 
-function displayMsg($title, $msg)
+
+
+function deletePasswd($service)
 {
-    echo "test";
-    var_dump($_POST);
-    if (0 == 0 ) {
-        echo "<div class=\"alert alert-warning alert-dismissible fade show\" role=\"alert\">
-                    <strong>$title</strong> $msg
-                    <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
-                         <span aria-hidden=\"true\">&times;</span>
-                       </button>
-              </div>";
+    try {
+        $db = new PDO('mysql:host=pfx-hosting.de;dbname=passwd', 'passwd', '33Hrm~9g');
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    } catch (Exception $e) {
+        echo 'Exception abgefangen: ', $e->getMessage(), "\n";
+        die;
     }
 
-    else {
-        echo "NO RETURN!";
-    }
+    $sth = $db->prepare("DELETE FROM password WHERE service_name = ?");
+    $sth->execute(array($service));
 
-
+    echo "<meta http-equiv='refresh' content='0; URL=/index.php'>";
 }

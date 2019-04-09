@@ -1,3 +1,14 @@
+<?php
+session_start();
+var_dump($_SESSION);
+if(!isset($_SESSION['username'])) {
+die('Bitte zuerst <a href="login.php">einloggen</a>');
+}
+
+//Abfrage der Nutzer ID vom Login
+$username = $_SESSION['username'];
+
+?>
 <?php include "includes/head.php" ?> <!-- includes head data -->
 <?php include "includes/nav.php" ?> <!-- includes navbar -->
 
@@ -10,15 +21,15 @@ $showFormular = true; //Variable ob das Registrierungsformular anezeigt werden s
 
 if(isset($_GET['register'])) {
     $error = false;
-    $username = $_POST['email'];
-    $passwort = $_POST['password1'];
-    $passwort2 = $_POST['password2'];
+    $username = $_POST['username'];
+    $password1 = $_POST['password1'];
+    $password2 = $_POST['password2'];
 
-    if(strlen($passwort) == 0) {
+    if(strlen($password1) == 0) {
         echo 'Bitte ein Passwort angeben<br>';
         $error = true;
     }
-    if($passwort != $passwort2) {
+    if($password1 != $password2) {
         echo 'Die Passwörter müssen übereinstimmen<br>';
         $error = true;
     }
@@ -27,9 +38,9 @@ if(isset($_GET['register'])) {
     if(!$error) {
         $statement = $pdo->prepare("SELECT * FROM users WHERE username = :username");
         $result = $statement->execute(array('username' => $username));
-        $username = $statement->fetch();
+        $user = $statement->fetch();
 
-        if($username !== false) {
+        if($user !== false) {
             echo 'Diese E-Mail-Adresse ist bereits vergeben<br>';
             $error = true;
         }
@@ -37,9 +48,9 @@ if(isset($_GET['register'])) {
 
     //Keine Fehler, wir können den Nutzer registrieren
     if(!$error) {
-        $passwort_hash = password_hash($passwort, PASSWORD_DEFAULT);
+        $passwort_hash = password_hash($password1, PASSWORD_DEFAULT);
 
-        $statement = $pdo->prepare("INSERT INTO users (username, passwort) VALUES (:userame, :passwort)");
+        $statement = $pdo->prepare("INSERT INTO users (username, passwort) VALUES (:username, :passwort)");
         $result = $statement->execute(array('username' => $username, 'passwort' => $passwort_hash));
 
         if($result) {
