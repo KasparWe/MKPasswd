@@ -5,7 +5,7 @@
 function addPaswd($service, $username, $password, $link)
 {
     try {
-        $db = new PDO("sqlite:data.db");
+        $db = new PDO('mysql:host=pfx-hosting.de;dbname=passwd', 'passwd', '33Hrm~9g');
         $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 
     } catch (Exception $e) {
@@ -13,51 +13,18 @@ function addPaswd($service, $username, $password, $link)
         die;
     }
 
-    $encrypted_password = encryptPasswd($username, $password);
-
     $data = [
         'service' => $service,
         'username' => $username,
-        'password' => $encrypted_password,
+        'password' => $password,
         'link' => $link
     ];
-    $sql = "INSERT INTO password (service_name, user_name, password, url) VALUES (:service, :username, :encrypted_password, :link)";
+    $sql = "INSERT INTO password (service_name, user_name, password, url) VALUES (:service, :username, :password, :link)";
     $stmt = $db->prepare($sql);
     $stmt->execute($data);
-    $db->NULL;
-}
 
-function addUser($username, $password, $key)
-{
-  try {
-      $db = new PDO("sqlite:data.db");
-      $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 
-  } catch (Exception $e) {
-      echo 'Exception abgefangen: ', $e->getMessage(), "\n";
-      die;
-  }
 
-  $key = setKey();
-
-  $data = [
-      'key' => $key,
-      'username' => $username,
-      'password' => $password,
-  ];
-  $sql = "INSERT INTO users (user_name, password, enc_key) VALUES (:username, :password, :key)";
-  $stmt = $db->prepare($sql);
-  $stmt->execute($data);
-  $db->NULL;
-}
-
-function getKey($username)
-{
-    $db = new PDO("sqlite:data.db");
-    $stmt = $db->prepare("SELECT key FROM users WHERE user_name='$username'");
-    $key = execute($stmt);
-    $db->NULL;
-    return $key;
 }
 
 function setKey()
@@ -68,7 +35,7 @@ function setKey()
 
 function getPassword($username, $service)
 {
-  $db = new PDO("sqlite:data.db");
+    $db = new PDO('mysql:host=pfx-hosting.de;dbname=passwd', 'passwd', '33Hrm~9g');
   $stmt = $db->prepare("SELECT password FROM password WHERE user_name='$username' AND service_name='$service'");
   $encrypted_password = execute($stmt);
   $db->NULL;
@@ -90,8 +57,54 @@ function decryptPasswd($username, $service)
     $crypted_password = getPassword($username, $service);
     list($crypted_password_no_iv, $enc_iv) = explode("::", $crypted_password);;
     $cipher_method = 'aes-256-ctr';
-    $enc_key = getKey($username)
+    $enc_key = getKey($username);
     $password = openssl_decrypt($crypted_password_no_iv, $cipher_method, $enc_key, 0, hex2bin($enc_iv));
     unset($crypted_password, $cipher_method, $enc_key, $enc_iv);
     return $password;
+}
+
+
+
+function listPasswd()
+{
+    try {
+        $db = new PDO('mysql:host=pfx-hosting.de;dbname=passwd', 'passwd', '33Hrm~9g');
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    } catch (Exception $e) {
+        echo 'Exception abgefangen: ', $e->getMessage(), "\n";
+        die;
+    }
+
+    $sth = $db->prepare("SELECT * FROM password");
+    $sth->execute();
+    while ($row = $sth->fetch(PDO::FETCH_ASSOC)) { ?>
+        <tr>
+            <td><?php echo $row['service_name']; ?></td>
+            <td><a class="copy" data-clipboard-text="<?php echo $row['user_name']; ?>"><?php echo $row['user_name']; ?></a></td>
+                <td><a class="copy" data-clipboard-text="<?php echo $row['password']; ?>"><?php echo $row['password']; ?></a></td>
+            <td><?php echo $row['url']; ?></td>
+            <td><a><strong>delete</strong></a> - <a><strong>update</strong></a></td>
+        </tr>
+    <?php }
+}
+
+function displayMsg($title, $msg)
+{
+    echo "test";
+    var_dump($_POST);
+    if (0 == 0 ) {
+        echo "<div class=\"alert alert-warning alert-dismissible fade show\" role=\"alert\">
+                    <strong>$title</strong> $msg
+                    <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
+                         <span aria-hidden=\"true\">&times;</span>
+                       </button>
+              </div>";
+    }
+
+    else {
+        echo "NO RETURN!";
+    }
+
+
 }

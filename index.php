@@ -1,11 +1,27 @@
+<?php  ?>
+
+<?php
+session_start();
+var_dump($_SESSION);
+if(!isset($_SESSION['username'])) {
+    die('Bitte zuerst <a href="login.php">einloggen</a>');
+}
+
+//Abfrage der Nutzer ID vom Login
+$username = $_SESSION['username'];
+
+?>
+
 <?php include "includes/head.php" ?> <!-- includes head data -->
 <?php include "includes/nav.php" ?> <!-- includes navbar -->
+<?php include "includes/functions/actions.php" ?> <!-- includes actions -->
 
 <body>
 
 <!-- Start your project here-->
 <div style="height: 100vh">
     <div class="flex-center flex-column">
+
         <div class="container">
             <div class="row">
                 <div class="col-md-8"><?php include "includes/list.php" ?></div>
@@ -44,14 +60,12 @@
         </div>
     </div>
 </div>
-<!-- /Start your project here-->
 
 <?php include "includes/footer.php" ?> <!-- includes footer -->
 
 </body>
 
 <?php include "includes/scripts.php" ?> <!-- includes scripts -->
-<?php include "includes/functions/actions.php" ?> <!-- includes actions -->
 <?php
 
 
@@ -62,8 +76,24 @@ if(isset($_POST['submit']))
     $username = $_POST['Username'];
     $password = $_POST['Password'];
     $Link = $_POST['LinkService'];
+    $_POST['return'];
 
 
     addPaswd($service, $username, $password, $Link);
+
+    var_dump($_POST);
+    echo "\n";
+
+    echo "<meta http-equiv='refresh' content='0; URL=http://localhost:8080/index.php'>";
+
+
+
+
+    die;
+
+
 }
+
+
+
 ?>

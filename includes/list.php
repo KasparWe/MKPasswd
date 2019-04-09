@@ -1,3 +1,13 @@
+
+<script>
+    var clipboard = new ClipboardJS('.copy');
+
+    clipboard.on('success', function (e) {
+        console.log("Password copied");
+
+        e.clearSelection();
+    });
+</script>
 <table id="myTable" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
     <thead>
     <tr>
@@ -15,22 +25,7 @@
     </thead>
     <tbody>
     <!-- FOOR LOOP -->
-
-    <tr>
-        <td><a href="#">NAME</a></td>
-        <td>
-            <a class="copy" data-clipboard-text="#">
-                <strong>USERNAME</strong>
-            </a></td>
-        <td>
-            <a class="copy" data-clipboard-text="alöskdfjaöyp">
-                <strong>*********</strong>
-            </a>
-        </td>
-        <td><a href="#">go to</a></td>
-        <td><a href="#">Update | <a
-                    href="#">Delete</a></a></td>
-    </tr>
+    <?php listPasswd() ?>
     <!-- END FOR LOOP -->
     </tbody>
     <tfoot>

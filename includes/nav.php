@@ -6,16 +6,12 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="/">Home
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/user">User</a>
-            </li>
+
         </ul>
+
+
         <ul class="navbar-nav ml-auto nav-flex-icons">
+
             <li class="nav-item">
                 <a href="https://github.com/Kawetsch/MKPasswd" target="_blank" class="nav-link waves-effect waves-light">
                     <i class="fab fa-github"></i>
@@ -32,9 +28,8 @@
                     <i class="fas fa-user"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item" href="#">Add User</a>
+                    <a class="dropdown-item" href="/logout.php">Logout</a>
                 </div>
             </li>
         </ul>
