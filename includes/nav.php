@@ -7,29 +7,34 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
 
-        </ul>
+        <?php if (isset($_SESSION['username'])) {
+            echo "<ul class='navbar-nav mr-auto'>
+            <li class='nav-item active'>
+                <a class='nav-link' href='/'>Passwords
+                </a>
+            </li>
+            
+        </ul>";
+        } ?>
 
 
         <ul class="navbar-nav ml-auto nav-flex-icons">
 
             <li class="nav-item">
-                <a href="https://github.com/Kawetsch/MKPasswd" target="_blank" class="nav-link waves-effect waves-light">
+                <a href="https://github.com/Kawetsch/MKPasswd" target="_blank"
+                   class="nav-link waves-effect waves-light">
                     <i class="fab fa-github"></i>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link waves-effect waves-light">
-                    <i class="fab fa-google-plus-g"></i>
-                </a>
-            </li>
-            <?php if(isset($_SESSION['username']) ){
+
+            <?php if (isset($_SESSION['username'])) {
                 echo "<li class=\"nav-item dropdown\">
                 <a class=\"nav-link dropdown-toggle\" id=\"navbarDropdownMenuLink-333\" data-toggle=\"dropdown\" aria-haspopup=\"true\"
                    aria-expanded=\"false\">
                     <i class=\"fas fa-user\"></i>
                 </a>
                 <div class=\"dropdown-menu dropdown-menu-right dropdown-default\" aria-labelledby=\"navbarDropdownMenuLink-333\">
-                    <a class=\"dropdown-item\" href=\"#\">Add User</a>
+                    <a class=\"dropdown-item\" href=\"/addUser.php\">Add User</a>
                     <a class=\"dropdown-item\" href=\"/logout.php\">Logout</a>
                 </div>
             </li>";

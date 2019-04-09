@@ -1,8 +1,8 @@
-<?php  ?>
+<?php session_start();
+?>
 
 <?php
-session_start();
-if(!isset($_SESSION['username'])) {
+if (!isset($_SESSION['username'])) {
     die('echo "<meta http-equiv=\'refresh\' content=\'0; URL=/login.php\'>";
 ');
 }
@@ -33,24 +33,34 @@ $username = $_SESSION['username'];
                                 <form method="post" action="index.php">
                                     <div class="form-group">
                                         <label for="ServiceName">Service Name</label>
-                                        <input type="text" required class="form-control" id="ServiceName" name="ServiceName" aria-describedby="ServiceName" placeholder="Enter service name">
+                                        <input type="text" required class="form-control" id="ServiceName"
+                                               name="ServiceName" aria-describedby="ServiceName"
+                                               placeholder="Enter service name">
                                     </div>
                                     <div class="form-group">
                                         <label for="Username">Username</label>
-                                        <input type="text" class="form-control" id="Username" name="Username" required aria-describedby="Userame" placeholder="Enter userame">
+                                        <input type="text" class="form-control" id="Username" name="Username" required
+                                               aria-describedby="Userame" placeholder="Enter userame">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="Password">Password</label>
-                                        <input required type="password" class="form-control" id="Password" placeholder="Password" name="Password">
-                                        <small id="PaswordHelp" class="form-text text-muted">We'll never share your password with anyone else.</small>
+                                        <input required type="password" class="form-control" id="Password"
+                                               placeholder="Password" name="Password">
+                                        <small id="PaswordHelp" class="form-text text-muted">We'll never share your
+                                            password with anyone else.
+                                        </small>
 
                                     </div>
                                     <div class="form-group">
                                         <label for="LinkService">Link to Service</label>
-                                        <input type="text" class="form-control" id="LinkService" aria-describedby="ServiceLink" name="LinkService" placeholder="Enter service link">
+                                        <input type="text" class="form-control" id="LinkService"
+                                               aria-describedby="ServiceLink" name="LinkService"
+                                               placeholder="Enter service link">
                                     </div>
-                                    <button type="submit" value="click" name="submit" class="btn btn-primary">Add Password</button>
+                                    <button type="submit" value="click" name="submit" class="btn btn-primary">Add
+                                        Password
+                                    </button>
                                 </form
                             </div>
                         </div>
@@ -69,9 +79,7 @@ $username = $_SESSION['username'];
 <?php
 
 
-
-if(isset($_POST['submit']))
-{
+if (isset($_POST['submit'])) {
     $service = $_POST['ServiceName'];
     $username = $_POST['Username'];
     $password = $_POST['Password'];
@@ -81,19 +89,15 @@ if(isset($_POST['submit']))
 
     addPaswd($service, $username, $password, $Link);
 
-    var_dump($_POST);
     echo "\n";
 
     echo "<meta http-equiv='refresh' content='0; URL=http://localhost:8080/index.php'>";
-
-
 
 
     die;
 
 
 }
-
 
 
 ?>

@@ -1,9 +1,9 @@
-<?php  ?>
+<?php ?>
 <?php include "includes/functions/actions.php" ?> <!-- includes actions -->
 
 <?php
 session_start();
-if(!isset($_SESSION['username'])) {
+if (!isset($_SESSION['username'])) {
     die('echo "<meta http-equiv=\'refresh\' content=\'0; URL=/login.php\'>";
 ');
 }

@@ -1,4 +1,3 @@
-
 <script>
     var clipboard = new ClipboardJS('.copy');
 

@@ -6,7 +6,7 @@ function addPaswd($service, $username, $password, $link)
 {
     try {
         $db = new PDO('mysql:host=pfx-hosting.de;dbname=passwd', 'passwd', '33Hrm~9g');
-        $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     } catch (Exception $e) {
         echo 'Exception abgefangen: ', $e->getMessage(), "\n";
@@ -24,7 +24,6 @@ function addPaswd($service, $username, $password, $link)
     $stmt->execute($data);
 
 
-
 }
 
 function setKey()
@@ -36,10 +35,10 @@ function setKey()
 function getPassword($username, $service)
 {
     $db = new PDO('mysql:host=pfx-hosting.de;dbname=passwd', 'passwd', '33Hrm~9g');
-  $stmt = $db->prepare("SELECT password FROM password WHERE user_name='$username' AND service_name='$service'");
-  $encrypted_password = execute($stmt);
-  $db->NULL;
-  return $encrypted_password;
+    $stmt = $db->prepare("SELECT password FROM password WHERE user_name='$username' AND service_name='$service'");
+    $encrypted_password = execute($stmt);
+    $db->NULL;
+    return $encrypted_password;
 }
 
 function encryptPasswd($username, $password)
@@ -64,7 +63,6 @@ function decryptPasswd($username, $service)
 }
 
 
-
 function listPasswd()
 {
     try {
@@ -81,14 +79,16 @@ function listPasswd()
     while ($row = $sth->fetch(PDO::FETCH_ASSOC)) { ?>
         <tr>
             <td><?php echo $row['service_name']; ?></td>
-            <td><a class="copy" data-clipboard-text="<?php echo $row['user_name']; ?>"><?php echo $row['user_name']; ?></a></td>
-                <td><a class="copy" data-clipboard-text="<?php echo $row['password']; ?>"><?php echo $row['password']; ?></a></td>
+            <td><a class="copy"
+                   data-clipboard-text="<?php echo $row['user_name']; ?>"><?php echo $row['user_name']; ?></a></td>
+            <td><a class="copy"
+                   data-clipboard-text="<?php echo $row['password']; ?>"><?php echo $row['password']; ?></a></td>
             <td><?php echo $row['url']; ?></td>
-            <td><a href="/delete.php?name=<?php echo $row['service_name'] ?>"><strong>delete</strong></a> - <a><strong>update</strong></a></td>
+            <td><a href="/delete.php?name=<?php echo $row['service_name'] ?>"><strong>delete</strong></a> - <a><strong>update</strong></a>
+            </td>
         </tr>
     <?php }
 }
-
 
 
 function deletePasswd($service)
