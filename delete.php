@@ -1,5 +1,7 @@
 <?php
 session_start();
+include "includes/functions/actions.php";
+
 if (!isset($_SESSION['username'])) {
     die('echo "<meta http-equiv=\'refresh\' content=\'0; URL=/login.php\'>";
 ');
@@ -14,7 +16,6 @@ if (isset($_POST['submit'])) {
 
 ?>
 
-<?php include "includes/functions/actions.php" ?> <!-- includes actions -->
 
 
 
@@ -33,7 +34,7 @@ if (isset($_POST['submit'])) {
                     <h5 class="card-title">Delete <? echo $_GET['name'] ?></h5>
                     <p>Do you really want to delete this position?</p>
                     <form class="text-center border border-light p-5" action="" method="post">
-                        <button type="button" class="btn btn-primary">chancel</button>
+                        <a href="index.php" class="btn btn-primary">chancel</a>
                         <button type="submit" value="click" name="submit" class="btn btn-danger">delete</button>
                     </form
                 </div>
