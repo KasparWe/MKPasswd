@@ -1,11 +1,22 @@
 MKPasswd Dokumentation
 ======================
 
-Beginn:
+###Beginn
 
 Wir begannen unser Projekt mit der Idee einer Zeittrackingsoftware, welche auf Grund von wirtschaftlichen Problemen verworfen wurden musste.
 
 Das neue Projekt im Rahmen des Fachs Plus an der staatlichen Berufschule 1 Ansbach handelt von einem Passwortmanager, welcher auf einem eigenem System gehostet werden muss.
+
+###Systemanforderungen
+
+* Webserver mit mind. PHP 7.0
+* MYSQL Server
+
+###Benutze Frameworks
+
+* mdBootstrap - modernes Bootstrap (CSS & JS)
+* clipboardJS - kopieren der Passwortdaten in die Zwischablage
+* Datatables - anzeigen der Passwörter in einer Liste mit Sortier- und Suchfunktion
 
 
 Die Datenbank wurde von Maximilian Volk mit Hilfe von SQLite3 erstellt und besteht aus 2 Tabellen.
