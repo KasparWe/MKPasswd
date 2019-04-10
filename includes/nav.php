@@ -19,7 +19,16 @@
 
 
         <ul class="navbar-nav ml-auto nav-flex-icons">
-
+            <li class="nav-item">
+                <a href="https://tradebyte.com/impressum" target="_blank"
+                   class="nav-link waves-effect waves-light">Imprint
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="https://tradebyte.com/datenschutz" target="_blank"
+                   class="nav-link waves-effect waves-light">data policy
+                </a>
+            </li>
             <li class="nav-item">
                 <a href="https://github.com/Kawetsch/MKPasswd" target="_blank"
                    class="nav-link waves-effect waves-light">
