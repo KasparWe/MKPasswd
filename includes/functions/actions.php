@@ -24,6 +24,7 @@ function addPaswd($service, $username, $password, $link)
     $stmt->execute($data);
 
 
+
 }
 
 function setKey()
@@ -84,7 +85,7 @@ function listPasswd()
             <td><a class="copy"
                    data-clipboard-text="<?php echo $row['password']; ?>"><?php echo $row['password']; ?></a></td>
             <td><?php echo $row['url']; ?></td>
-            <td><a href="/delete.php?name=<?php echo $row['service_name'] ?>"><strong>delete</strong></a> - <a><strong>update</strong></a>
+            <td><a href="/delete.php?name=<?php echo $row['service_name'] ?>"><strong>delete</strong></a>
             </td>
         </tr>
     <?php }
@@ -107,3 +108,19 @@ function deletePasswd($service)
 
     echo "<meta http-equiv='refresh' content='0; URL=/index.php'>";
 }
+
+function displMsg($title, $msg) {
+
+    echo "<script>
+bootbox.alert({
+    title: '.$title.',
+    message: ' . $msg . ',
+    callback: function () {
+        window.location.href = \"/index.php\";
+    }
+})
+</script>";
+
+}
+
+?>

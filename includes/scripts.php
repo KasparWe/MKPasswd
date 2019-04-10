@@ -19,13 +19,23 @@
         }
     }
 </script>
-<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
-<!-- JQuery -->
 <script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
 <!-- Bootstrap tooltips -->
 <script type="text/javascript" src="../js/popper.min.js"></script>
 <!-- Bootstrap core JavaScript -->
 <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<!-- bootbox code -->
+<script src="../js/bootbox.js"></script>
+<script src="../js/bootbox.locales.min.js"></script>
+<script>
+    $(document).on("click", ".show-alert", function(e) {
+        bootbox.alert("Hello world!", function() {
+            console.log("Alert Callback");
+        });
+    });
+</script><!-- JQuery -->
+
+
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="../js/mdb.js"></script>
 <script>

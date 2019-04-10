@@ -1,6 +1,3 @@
-<?php ?>
-<?php include "includes/functions/actions.php" ?> <!-- includes actions -->
-
 <?php
 session_start();
 if (!isset($_SESSION['username'])) {
@@ -16,6 +13,10 @@ if (isset($_POST['submit'])) {
 }
 
 ?>
+
+<?php include "includes/functions/actions.php" ?> <!-- includes actions -->
+
+
 
 <?php include "includes/head.php" ?> <!-- includes head data -->
 <?php include "includes/nav.php" ?> <!-- includes navbar -->
@@ -46,4 +47,3 @@ if (isset($_POST['submit'])) {
 
 </body>
 
-<?php include "includes/scripts.php" ?> <!-- includes scripts -->

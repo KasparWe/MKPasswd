@@ -70,6 +70,27 @@ $username = $_SESSION['username'];
         </div>
     </div>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">TITLE</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                MSG
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <?php include "includes/footer.php" ?> <!-- includes footer -->
 
@@ -88,10 +109,8 @@ if (isset($_POST['submit'])) {
 
 
     addPaswd($service, $username, $password, $Link);
-
-    echo "\n";
-
-    echo "<meta http-equiv='refresh' content='0; URL=http://localhost:8080/index.php'>";
+    unset($_POST);
+    displMsg("Password added", "Your password has been added to the database");
 
 
     die;
